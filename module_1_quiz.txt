@@ -1,7 +1,7 @@
 1.
 Question 1
 Name the parts of a VHDL file?
-Ans:
+Ans:Library,Entity and Architecture
 2.
 Question 2
 The V in VHDL stands for?
@@ -9,7 +9,7 @@ Ans:Very High Speed IC
 3.
 Question 3
 The VHDL variable assignment operator := has
-Ans:
+Ans:Current value
 4.
 Question 4
 The following VHDL signals are equivalent
