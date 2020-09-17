@@ -21,7 +21,7 @@ The library for VHDL std_logic type includes the values of :
 U X 0 1 Z W L H - If the function truth table for "not" function is : not '1' = '0',
 
 please provide : not 'X' = ?
-Ans:
+Ans:'X'
 6.
 Question 6
 In the FPGA design flow, Timing based simulation occurs
