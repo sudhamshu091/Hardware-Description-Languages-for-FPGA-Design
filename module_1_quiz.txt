@@ -1,0 +1,49 @@
+1.
+Question 1
+Name the parts of a VHDL file?
+Ans:
+2.
+Question 2
+The V in VHDL stands for?
+Ans:Very High Speed IC
+3.
+Question 3
+The VHDL variable assignment operator := has
+Ans:
+4.
+Question 4
+The following VHDL signals are equivalent
+Ans:DATA_in : std_logic, data_IN : std_logic
+5.
+Question 5
+The library for VHDL std_logic type includes the values of :
+
+U X 0 1 Z W L H - If the function truth table for "not" function is : not '1' = '0',
+
+please provide : not 'X' = ?
+Ans:
+6.
+Question 6
+In the FPGA design flow, Timing based simulation occurs
+Ans:After synthesis and placement of logic
+7.
+Question 7
+If A = "1010", using the shift left logical, Provide ? <= A SLL 2
+Ans:1000
+8.
+Question 8
+VHDL is only used for synthesis of logic circuits
+Ans:False
+9.
+Question 9
+VHDL can be implemented into the following devices
+Ans:All the above(FPGA
+                  ASIC
+                  CPLD)
+10.
+Question 10
+Types of VHDL port Declarations in the Entity
+Ans:in,out,inout
+
+
+
