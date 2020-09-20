@@ -1,0 +1,40 @@
+1.
+Question 1
+Determine which lines have syntax errors in the accompanying VHDL code:
+Select only the line numbers in which errors occur. You should find about 8-10 errors.
+
+library ieee;                     --line1
+use ieee.std_logic_1164.all;      --line1
+                                  --line1
+
+entity find_errors is (
+    a: bit_vector(0 to3);
+    b: out std_logic_vector(3 to 0);
+    c: in bit_vector(5 downto 0))
+end find_errors;
+
+arcitecture not_good of find_errors
+  begin
+  my_label: process
+    begin
+    if c = x"F" then 
+      b <= '0101';
+    end if
+  end process;
+end not_good
+
+Ans:
+Error in Line 4
+Error in Line 6
+Error in Line 7
+Error in Line 10
+Error in Line 13
+Error in Line 14
+Error in Line 15
+Error in Line 17
+Error in Line 18
+Error in Line 20
+  
+
+
+
