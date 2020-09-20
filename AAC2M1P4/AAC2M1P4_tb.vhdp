@@ -1,0 +1,248 @@
+--------------------------------------------------------------------------------
+--                                                                            --
+--                     Majority Vote Test Bench                              --
+--                                                                            --
+--------------------------------------------------------------------------------
+--
+--
+-- @file AAC2M1P4_tb.vhd
+-- @version: 2.0 
+-- Date of current revision:  @date 2021-07-21  
+-- Target FPGA: Intel Altera MAX10
+-- Tools used: Quartus Prime 16.1 for editing and synthesis 
+--              Modeltech ModelSim 10.4a Student Edition for simulation 
+--             Quartus Prime 16.1  for place and route if applied 
+--  Functional Description:  This file contains the VHDL which describes the 
+--              test bench for an FPGA implementation of a Majority Vote circuit
+--  Hierarchy:  This test bench uses the submitted AAC2M1P4.vhd component found
+--              in the Work Library.
+--              The FPGA is one entity.  The architecture is one
+--              functional section, which compares all the possible
+--              input bit vector combinations and checks to see if the
+--              result is correct after a 10 ns delay.   
+
+--	 TESTS 
+--   I. Majority Vote test
+--    compare all the possible input bit vector combinations and checks to see 
+--    if the result is correct after a 10 ns delay.
+--  
+--  Designed by:  @author Tim Scherr 
+--                @author Sanju Prakash Kannioth
+--                University of Colorado at Boulder
+--                timothy.scherr@colorado.edu 
+-- 
+--      Copyright (c) 2019, University of Colorado   All rights reserved.
+------------------------------------------------------------------------------
+-- 
+--
+
+----------------------------------------------------------------------
+-- Libraries
+----------------------------------------------------------------------
+
+library ieee;                                
+use ieee.std_logic_1164.all;                 
+use ieee.numeric_std.all; 
+use ieee.std_logic_textio.all;
+use std.textio.all;
+use work.all;
+
+----------------------------------------------------------------------
+-- Testbench entity declaration
+----------------------------------------------------------------------
+entity AAC2M1P4_tb is     
+--  port( ); 
+-- no external interface.....THIS IS THE TOP LEVEL
+end AAC2M1P4_tb;
+
+-------------------------------------------------------------------
+-- Testbench architecture body
+----------------------------------------------------------------------
+architecture behavioral of AAC2M1P4_tb is      
+----------------------------------------------------------------------
+--- constant declarations
+----------------------------------------------------------------------
+   constant delay:  TIME := 10.00 NS; -- defines the wait period.
+   constant Points: integer := 10;   -- number of points this problem
+                                    -- is worth
+----------------------------------------------------------------------                                                                      
+-- signal declarations 
+----------------------------------------------------------------------
+--  signal clock:  std_logic := '0';
+  signal a_tb, b_tb, c_tb:  std_logic;  -- data inputs
+  signal y_tb:  std_logic;  -- data output
+
+  signal ValidCheck: std_logic_vector(15 downto 0);  
+            -- unique to this problem, to check validity of submission
+  type mem is array (integer range <>) of std_logic_vector(7 downto 0);
+  signal ROM: mem(0 to 255); 
+
+--------------------------------------------------
+-- component declarations before instantiation 
+--------------------------------------------------
+---------------------------------------------------------------------
+-- Component declarations
+----------------------------------------------------------------------
+-- Mux
+component Majority 
+   port (                 
+    A, B, C: in std_logic; 			
+    Y: out std_logic       
+    );  
+end component;
+
+----------------------------------------------------------------------
+--- Procedures
+----------------------------------------------------------------------
+
+  procedure Load_ROM(signal data_word : inout mem) is
+     file ROMfile : text open read_mode is "vectorh.out";
+     variable lbuf: line;
+     variable i: integer :=0;
+     variable fdata: std_logic_vector(7 downto 0);
+ --
+   begin
+     while not(endfile(ROMfile))  loop
+     -- read digital data from input file
+     readline(ROMfile, lbuf);
+     hread(lbuf, fdata);
+     data_word(i) <= fdata;
+     i := i + 1;
+     end loop;
+  end procedure; 
+
+ procedure Write_ROM (signal data_word : inout mem) is
+     file ROMfileOut : text open write_mode is "myvectorh.out";
+     variable row: line;
+     variable i : integer :=0;
+     variable fdata: std_logic_vector (7 downto 0);
+ --
+   begin
+     while (i<256) loop
+     fdata := data_word(i);
+     hwrite(row, fdata, left,4);
+     writeline(RomfileOut, row);
+     i := i + 1;
+     end loop;
+  end procedure;
+
+----------------------------------------------------------------------
+-- Top level output port assignments
+----------------------------------------------------------------------
+begin
+  
+----------------------------------------------------------------------
+-- Component instances
+----------------------------------------------------------------------
+-- 
+DUT : Majority      -- Device under test instantiation
+    port map( 
+        -- Inputs
+        A    => a_tb,
+        B    => b_tb,
+        C    => c_tb,
+         -- Outputs
+        Y    => y_tb
+        );  
+----------------------------------------------------------------------
+-- Test Stimulation
+----------------------------------------------------------------------
+`protect BEGIN_PROTECTED
+`protect version = 1
+`protect encrypt_agent = "ModelSim", encrypt_agent_info = "10.4a"
+`protect key_keyowner = "Mentor Graphics Corporation" , key_keyname = "MGC-VERIF-SIM-RSA-1" , key_method = "rsa"
+`protect encoding = (enctype = "base64", line_length = 64, bytes = 128)
+`protect KEY_BLOCK
+j/jMspqIxZmFK36OwhGslSRhxbVnBEFmpFO/f6DvRUaOxuG6qOsNQssmPQa0jIqq
+izbuclgqFqGI43DXnQUxyuYbIhye//HcHgf2fw2683vCCRAjVmydgqZmlDBDb9Fl
+pPLV5EJapfjwz6xQaPhbQjoPfKoRpHsJ3Llnq9vWvDg=
+`protect data_method = "aes128-cbc"
+`protect encoding = (enctype = "base64", line_length = 64, bytes = 3856)
+
+`protect DATA_BLOCK
+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
+`protect END_PROTECTED           
+end behavioral; -- of AAC2M1P4_tb;     
+
+
+    
