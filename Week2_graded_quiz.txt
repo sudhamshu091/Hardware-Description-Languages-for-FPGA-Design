@@ -1,0 +1,153 @@
+1.
+Question 1
+VHDL following assignment statements operate in parallel :
+
+Y <= A + B;
+
+Z <= Y - C;
+
+Ans:From process to process within an architecture
+2.
+Question 2
+In the following VHDL architecture code :
+
+begin
+
+with SEL select
+
+z <= A when "00",
+
+B when "01",
+
+C when "10",
+
+D when others;
+
+end
+
+The when others covers and catches the following conditions :
+
+Ans:D when "11",
+    A when "UU",
+    B when "X0"
+3.
+Question 3
+Choose the VHDL architecture signal assignment for a selected 2:1 MUX :
+
+Ans:begin
+
+with SEL select
+
+Z_out <= A_in when '0';
+
+B_in when others;
+
+end sel_arch;
+
+
+
+Ans:
+4.
+Question 4
+Using the & Concatenation operator the following is a legal bus concatenation assignment for Z output :
+
+entity bus_build in port (
+
+A : in std_logic_vector(3 downto 0);
+
+Z : out std_logic_vector(7 downto 0) );
+
+end entity bus_build;
+
+architecture bus_arch of bus_build is
+
+begin bus_proc : process (A) begin
+
+Z <= "000" & A & '1'; -- This is the Bus Concatenation
+
+end process bus_proc;
+
+end architecture bus_arch;
+Ans:True
+5.
+Question 5
+An unintended Latch is generated from the following VHDL code because ?
+
+begin latch_proc : process(clock, data)
+
+begin
+
+if ( rising_edge(clock) ) then
+
+q <= data;
+
+end if;
+
+end process latch_proc;
+Ans:data is included in the sensitivity list
+    there is no else statement for data
+6.
+Question 6
+In order to create a D Latch to be used in a design, the following VHDL code would be used :
+
+latch_proc : process ( enable, clock )
+
+begin
+
+if ( enable = '1' ) then latch_out <= clock;
+
+end if;
+
+end process;
+
+Ans:True: when enabled the clock signal will pass
+7.
+Question 7
+The following VHDL process code synthesizes a gate delay into the FPGA design :
+
+begin
+
+z_out <= A_bus and B_bus after 2ns;
+
+end;
+
+Ans:False : 2ns in not synthesized into the design
+8.
+Question 8
+The following VHDL statements infer a flip-flop :
+Ans:if (rising_edge (clk) ) then q <= d;
+    if ( clk'event and clk='1') q<=d;
+9.
+Question 9
+choose which VHDL assignments create a flip-flop :
+
+if (rising_edge(clk) ) then
+
+X <= A and B;
+
+Y := C nand D;
+
+Z <= E or F;
+
+end if;
+
+Ans:X
+    Z
+10.
+Question 10
+The following VHDL code generates a divided half clock :
+
+Ans:process (clk) begin
+
+    if ( rising_edge(clk) ) then q <= not d;
+
+    end if;
+
+    end process;
+
+
+
+
+
+
+
