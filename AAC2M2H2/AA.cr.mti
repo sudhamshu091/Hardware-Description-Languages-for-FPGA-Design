@@ -1,0 +1,23 @@
+C:/Modeltech_pe_edu_10.4a/examples/coursera/AAC2M2H2.vhd {1 {vcom -work work -2002 -explicit -stats=none {C:\Modeltech_pe_edu_10.4a\examples\coursera\AAC2M2H2.vhd}
+Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity FIFO8x9
+-- Compiling architecture Arch_FIFO8x9 of FIFO8x9
+
+} {} {}} C:/Modeltech_pe_edu_10.4a/examples/coursera/AAC2M2H2_tb.vhdp {1 {vcom -work work -2002 -explicit -stats=none C:/Modeltech_pe_edu_10.4a/examples/coursera/AAC2M2H2_tb.vhdp
+Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package NUMERIC_BIT_UNSIGNED
+-- Loading package std_logic_textio
+-- Compiling entity AAC2M2H2_tb
+-- Compiling architecture behavioral of AAC2M2H2_tb
+
+} {} {}}
