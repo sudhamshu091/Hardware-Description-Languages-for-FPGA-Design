@@ -1,0 +1,189 @@
+/*******************************************************************************
+-*                                                                            **
+**                     2-bit Comparator Test Bench                            **
+**                                                                            **
+********************************************************************************
+**
+** Replace [items in brackets] with your content
+** @file AAC2M3P1_tb.v
+** @version: 1.0 
+** Date of current revision:  @date YYYY*MM*DD  
+** Target FPGA: [Intel Altera MAX10] 
+** Tools used: Sigasi for editing and synthesis checking 
+**             Modeltech ModelSIM 10.4a Student Edition for simulation 
+**             
+**  Functional Description:  This file contains the Verilog which describes the 
+**              test bench for an FPGA implementation of a 2-bit Comparator
+**  Hierarchy:  This test bench uses the AAC2M3P1.v component found
+**              in the Work Library.
+**             The YourFPGA component is instantiated. This is the component 
+**             under test.  Other devices on the board are modeled as processes 
+**             which run concurrently.    The other 
+**             devices are listed in the following function sections:
+**                [ I.   Clock * generates XX MHz clock 
+**                 II.  Reset control
+**                 III. Interrupt Control
+**                 IV.  Address/Data Bus
+**                      etc.         ]
+**
+**              The FPGA is one module.  The test bench module is one
+**              functional section, which compares all the possible
+**              input bit vector combinations and checks to see if the
+**              result is correct after a 10 ns delay.   
+
+**	 TESTS 
+**   I. Comparator test
+**    compare all the possible input bit vector combinations and checks to see 
+**    if the result is correct after a 10 ns delay.
+**  
+**  Designed by:  @author Tim Scherr 
+**                University of Colorado
+**                timothy.scherr@colorado.edu 
+** 
+**      Copyright (c) 2018, 2019 by Tim Scherr
+**
+** Redistribution, modification or use of this software in source or binary
+** forms is permitted as long as the files maintain this copyright. Users are
+** permitted to modify this and use it to learn about the field of HDl code.
+** Tim Scherr and the University of Colorado are not liable for any misuse
+** of this material.
+******************************************************************************
+** 
+*/
+`timescale 1 ns / 1 ps   // set timescale to nanoseconds, ps precision
+/**********************************************************************
+** Libraries
+**********************************************************************/
+                                                        
+/**********************************************************************
+** Testbench modules declaration
+**********************************************************************/
+module AAC2M3P1_tb;  
+// no external interface.....THIS IS THE TOP LEVEL
+
+
+/**********************************************************************
+*** constant declarations
+**********************************************************************/
+   parameter delay = 10;  //ns  defines the wait period.
+
+/**********************************************************************                                                                      
+** signal declarations 
+**********************************************************************/
+//  wire clock = 0;    // clock if needed, from generator model
+//  wire reset_n = 0;    // reset if needed  
+  reg [1:0] a_tb ;  // data input stimulus
+  reg [1:0] b_tb ;  // data input stimulus
+  wire y_tb ; // data output stimulus
+  integer i=0, j=0, ErrorCount=0, score = 10;  // index variables for test
+  integer FirstError = 0;
+  reg [15:0] ValidCheck = 16'h0231; // unique to this problem, to check validity
+                             // of submission  
+  integer testresults, vector;    //32-bit multi-channel descriptor
+  reg [7:0] address;
+  reg [7:0] data;
+  reg [7:0] rom [0:255] ;   //storage for the rom file, 255 x 8 
+
+/**********************************************************************
+** Component instances
+**********************************************************************/
+// instantiate the device under test
+Comparator2 DUT (     // Device under Test
+        // Inputs
+       .A(a_tb),
+		   .B(b_tb),
+         // Outputs
+       .Equals(y_tb)
+        );  
+
+/**********************************************************************
+** External Device Simulation Processes
+**********************************************************************/
+
+  `pragma protect begin_protected
+`pragma protect version = 1
+`pragma protect encrypt_agent = "Model Technology", encrypt_agent_info = "10.4a"
+`pragma protect data_method = "aes128-cbc"
+`pragma protect key_keyowner = "Mentor Graphics Corporation" , key_keyname = "MGC-VERIF-SIM-RSA-1" , key_method = "rsa"
+`pragma protect encoding = (enctype = "base64", line_length = 64, bytes = 128), key_block
+HjhNnPYzLoBX6649VfdTlZXH9VJPw/6xxYGGIS50K1c3w9CCajU5WO3J96y+S8t2
+PtZSmXMaqLgDE0m7pLzEylmCpL1RYsoYJTLCQComXZi8Jk0aqUtIocMeE9tyvYtt
+ThSPN+lvoqnPO+u6CZB0Vx1MJdnAmo9rPuubMVoAUZA=
+`pragma protect encoding = (enctype = "base64", line_length = 64, bytes = 3408), data_block
+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
+`pragma protect end_protected
+
+endmodule // of AAC2M3P4_tb;     
+
+
+    
