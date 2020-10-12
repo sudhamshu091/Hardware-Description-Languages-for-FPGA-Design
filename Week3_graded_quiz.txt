@@ -1,1 +1,62 @@
+1.
+Question 1
+The 4 styles of verilog modeling are : structural (gate-level), instantiated (instance units), behavioral (always), and dataflow (assign).
+Ans:False
+2.
+Question 2
+Combinatorial logic circuits require a clock edge to operate?
+Ans:False
+3.
+Question 3
+The reg A has value 8'hA5, which is equivalent to 8'b1010_0101 ?
+Ans:True
+4.
+Question 4
+Verilog supports the following logic values : x, z, 0, 1. An FPGA I/O will measure the following values by a voltmeter :
+Ans:Logic value 0 : Voltmeter 0.0V.
+    Logic value 1 : Voltmeter 2.5V.
+5.
+Question 5
+Blocking assignments in verilog ( = ) execute in series in an always block.
+Ans: = assignments operate in series
+6.
+Question 6
+If Z_out = 3'b101 the using the replication operator {2{Z_out}} creates :
+Ans:101101
+7.
+Question 7
+Combinatorial circuits should include all inputs for the circuit in the sensitivity list :
+Ans:True
+8.
+Question 8
+Since verilog is not case sensitive, the following statements are equivalent :
+
+C_IN = A;
+
+c_in = A;
+
+Ans:True
+9.
+Question 9
+Verilog uses a positional or ordered port list for instances, so the following ordered port lists are equivalent :
+
+add4 unit_1 (a, b, c_in, c_out, sum);
+
+add4 unit_2 (a, b, c_out, c_in, sum);
+
+Ans:False
+10.
+Question 10
+reg [31:0] my_data;
+
+assign my_data = 16'hCAFE;
+
+The reg my_data has the 32 bit value as :
+Ans:my_data = 0000_CAFE
+
+
+
+
+
+
 
