@@ -1,0 +1,15 @@
+C:/Modeltech_pe_edu_10.4a/examples/coursera/AAC2M4P2/AAC2M4P2.v {1 {vlog -work work -stats=none C:/Modeltech_pe_edu_10.4a/examples/coursera/AAC2M4P2/AAC2M4P2.v
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module RAM128x32
+
+Top level modules:
+	RAM128x32
+
+} {} {}} C:/Modeltech_pe_edu_10.4a/examples/coursera/AAC2M4P2/AAC2M4P2_tb.vp {1 {vlog -work work -stats=none C:/Modeltech_pe_edu_10.4a/examples/coursera/AAC2M4P2/AAC2M4P2_tb.vp
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module AAC2M4P2_tb
+
+Top level modules:
+	AAC2M4P2_tb
+
+} {} {}}
