@@ -1,0 +1,126 @@
+1.
+Question 1
+In Verilog, a latch is generated from the following code because :
+
+   always @(clock or d_in or clear)  
+
+   begin
+
+      if (clear == 1) q_out <= 0;
+
+      else if (clock == 1) q_out <= d_in;
+
+   end
+
+Ans:Because d_in is included in the sensitivity list.
+2.
+Question 2
+The following verilog code has a synchronous reset because :
+
+always @(posedge clk)  
+
+  begin
+
+    if ( ! reset ) Q <= 4’b0000;
+
+    else if (shift == 1) Q <= Q << 1;
+
+end  
+
+Ans:reset is evaluated within poedge clk block
+3.
+Question 3
+Select the incomplete sensitivity list item for the combinatorial circuit causing indeterminate synthesis and simulation results :
+
+Ans:always @ (a or b) y = a & b & c;
+4.
+Question 4
+The following verilog code generates a :
+
+module my_block (
+
+input wire clock, reset,
+
+input wire [15:0] d,
+
+input reg [15:0] q );
+
+always @ (posedge clock, negedge reset)
+
+if ( ! reset ) q <= 0;
+
+else q <= d;
+
+endmodule
+
+Ans:Register
+5.
+Question 5
+The following verilog code is important because :
+
+assign z_out = ( oe == 1) ? data_out : 8'bz;
+
+(Select any answer that applies.)
+
+Ans:IO power is reduced.
+    The IO is undriven, so other devices connected can safely drive
+6.
+Question 6
+Select the following verilog code signal declaration for a RAM memory :
+Ans:
+7.
+Question 7
+After Synthesis, the following ROM data can be written to for future reads.
+
+always @*
+
+case(addr) 
+
+      2’b00:  rom_data = 8’b1000_0000;
+
+      2’b01:  rom_data = 8’b1010_1010;
+
+      2’b10:  rom_data = 8’b0101_0101;
+
+      2’b11:  rom_data = 8’b1111_0011;
+
+endcase
+Ans:False
+8.
+Question 8
+The following testbench verilog creates :
+
+  always
+
+  begin
+
+    clock = 1'b0;    #(50/2);
+
+    clock = 1'b1;    #(50/2);
+
+  end 
+Ans:Forever repeating clock at 20MHz
+9.
+Question 9
+Pound delays such as the following are synthesized into delay elements in the cell library :
+
+reset = 1'b0;
+
+#100;
+
+reset = 1'b1;
+Ans:False
+10.
+Question 10
+Assertions are used in verilog testbenches to perform the following :
+
+(select any that are True)
+Ans:Severity level can be set to various levels : fatal, error, warning, and info.
+    Assertions can be turned on or off during simulation run.
+    Assertions evaluate and print useful messages for design debug.
+
+
+
+
+
+
