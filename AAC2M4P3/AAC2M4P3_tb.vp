@@ -1,0 +1,208 @@
+/*******************************************************************************
+-*                                                                            **
+**                               FSM Test Bench                               **
+**                                                                            **
+********************************************************************************
+**
+** Replace [items in brackets] with your content
+** @file AAC2M4P3_tb.v
+** @version: 1.0 
+** Date of current revision:  @date 2019*08*13  
+** Target FPGA: [Intel Altera MAX10] 
+** Tools used: Sigasi for editing and synthesis checking 
+**             Modeltech ModelSIM 10.4a Student Edition for simulation 
+**             
+**  Functional Description:  This file contains the Verilog which describes the 
+**              test bench for an FPGA implementation of a FSM.
+**              The inputs are 1 bit In1. 
+**              
+**              Outputs is Out1(1-bit)  
+**  Hierarchy:  This test bench uses the AAC2M4P3.v component found
+**              in the Work Library.
+**             The YourFPGA component is instantiated. This is the component 
+**             under test.  Other devices on the board are modeled as processes 
+**             which run concurrently.    The other 
+**             devices are listed in the following function sections:
+**                [ I.   Clock * generates XX MHz clock 
+**                 II.  Reset control
+**                 III. Interrupt Control
+**                 IV.  Address/Data Bus
+**                      etc.         ]
+**
+**              The FPGA is one module.  The test bench module is one
+**              functional section, which compares all the possible
+**              input bit vector combinations and checks to see if the
+**              result is correct after a 10 ns delay.   
+
+**   TESTS 
+**   I. FSM test
+**    compare all the possible input bit vector combinations and checks to see 
+**    if the result is correct after a 10 ns delay.
+**  
+**  Designed by:  @author Sanju Prakash Kannioth
+**                Univeristy of Colorado
+**                sanju.kannioth@colorado.edu  
+** 
+**      Copyright (c) 2018, 2019 by Tim Scherr
+**
+** Redistribution, modification or use of this software in source or binary
+** forms is permitted as long as the files maintain this copyright. Users are
+** permitted to modify this and use it to learn about the field of HDl code.
+** Tim Scherr and the University of Colorado are not liable for any misuse
+** of this material.
+******************************************************************************
+** 
+*/
+
+`timescale 1 ns / 1 ps   // set timescale to nanoseconds, ps precision
+/**********************************************************************
+** Libraries
+**********************************************************************/
+                                                        
+/**********************************************************************
+** Testbench entity declaration
+**********************************************************************/
+module AAC2M4P3_tb;  
+// no external interface.....THIS IS THE TOP LEVEL
+
+
+/**********************************************************************
+*** constant declarations
+**********************************************************************/
+   parameter delay = 10;  //ns  defines the wait period.
+   parameter clk_period = 10; //ns defines half clock period
+
+/**********************************************************************                                                                      
+** signal declarations 
+**********************************************************************/
+  reg clock_tb = 0;    // clock if needed, from generator model
+  reg reset_n_tb = 0;    // reset if needed  
+  reg In1_tb;  // data input stimulus
+  
+  wire Out1_tb ; // data output response
+
+  integer i=0, j=0, k=0, ErrorCount=0, score = 10;  // index variables for test
+  integer FirstError = 0;
+  
+  reg [15:0] ValidCheck = 16'h0243; // unique to this problem, to check validity
+                             // of submission 
+  integer testresults, vector;    //32-bit multi-channel descriptor
+  reg [7:0] address;
+  reg [7:0] data;
+  reg [7:0] rom [0:255] ;   //storage for the rom file, 255 x 8 
+
+
+/**********************************************************************
+** Component instances
+**********************************************************************/
+// instantiate the device under test
+FSM DUT (     // Device under Test
+        // Inputs
+       .In1(In1_tb),
+       .CLK(clock_tb),
+       .RST(reset_n_tb),
+        // Outputs
+       .Out1(Out1_tb)
+        );
+
+ `pragma protect begin_protected
+`pragma protect version = 1
+`pragma protect encrypt_agent = "Model Technology", encrypt_agent_info = "10.4a"
+`pragma protect data_method = "aes128-cbc"
+`pragma protect key_keyowner = "Mentor Graphics Corporation" , key_keyname = "MGC-VERIF-SIM-RSA-1" , key_method = "rsa"
+`pragma protect encoding = (enctype = "base64", line_length = 64, bytes = 128), key_block
+Qc+X6Rtx0FAvbaUf4JxSS+G4f7709DUdv5Xv/JdsXogPGDZKCuw7vuLCE/llnYdb
+fyKI5UoRvBvJcjKXwx9qQmvyKxkkE5s6ql6moYATHlp+6p8o3vXf/VqV9AP+z/rX
+2765EEMpC6HSrDkU5tnvUclopWp8ve3lT7PGv83Y0wM=
+`pragma protect encoding = (enctype = "base64", line_length = 64, bytes = 4256), data_block
+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
+`pragma protect end_protected
+endmodule // AAC2M4P3_tb
